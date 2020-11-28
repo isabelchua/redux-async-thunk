@@ -1,15 +1,23 @@
 import React, { useEffect } from "react";
-import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "./actions";
 
 const Posts = () => {
 	const dispatch = useDispatch();
+	const posts = useSelector(state => state);
 
 	useEffect(() => {
 		dispatch(fetchPosts());
 	}, []);
-	return <div>posts</div>;
+
+	return (
+		<div>
+			{/* posts */}
+			{posts.map(el => {
+				return <h3>{el.title}</h3>;
+			})}
+		</div>
+	);
 };
 
 export default Posts;
